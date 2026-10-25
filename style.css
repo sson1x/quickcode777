@@ -1,0 +1,989 @@
+/* ================= 1. БАЗОВЫЕ НАСТРОЙКИ И СБРОС ================= */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background-color: #060606;
+  color: #ffffff;
+  line-height: 1.5;
+  overflow-x: hidden;
+  min-width: 320px;
+  /* Тонкая швейцарская сетка на фоне */
+  background-size: 56px 56px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button, input, textarea {
+  font-family: inherit;
+}
+
+.container {
+  width: 100%;
+  max-width: 1060px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.section {
+  padding: clamp(48px, 7vw, 84px) 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* ================= 2. ТИПОГРАФИКА (ПЛАВНЫЙ РАЗМЕР CLAMP) ================= */
+.mono-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: clamp(10px, 1.2vw, 11px);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #888888;
+  margin-bottom: 14px;
+  line-height: 1.6;
+}
+
+.mono-label b {
+  color: #ffffff;
+}
+
+.mono-small {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #888888;
+  margin-bottom: 10px;
+  display: block;
+}
+
+.hero-title {
+  font-size: clamp(28px, 5vw, 52px);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  max-width: 780px;
+  margin-bottom: 20px;
+}
+
+.hero-subtitle {
+  font-size: clamp(14px, 1.8vw, 16px);
+  color: #a0a0a0;
+  max-width: 650px;
+  margin-bottom: 32px;
+  line-height: 1.6;
+}
+
+.section-title {
+  font-size: clamp(24px, 3.8vw, 36px);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  margin-bottom: 12px;
+}
+
+.section-subtitle {
+  font-size: clamp(13px, 1.6vw, 15px);
+  color: #999999;
+  max-width: 600px;
+  margin-bottom: clamp(28px, 4vw, 40px);
+  line-height: 1.6;
+}
+
+/* ================= 3. ШАПКА САЙТА И МОБИЛЬНОЕ МЕНЮ ================= */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: rgba(6, 6, 6, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.header-inner {
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.logo {
+  font-size: 14px;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+  z-index: 1001;
+}
+
+.logo span {
+  font-family: 'JetBrains Mono', monospace;
+  color: #777;
+  font-size: 12px;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.nav-link {
+  font-size: 12px;
+  color: #a0a0a0;
+  transition: color 0.2s;
+  white-space: nowrap;
+}
+
+.nav-link:hover {
+  color: #ffffff;
+}
+
+.nav-mobile-cta {
+  display: none;
+}
+
+.btn-header {
+  background: #ffffff;
+  color: #000000;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 9px 16px;
+  border-radius: 99px;
+  white-space: nowrap;
+  transition: background 0.2s, transform 0.15s;
+}
+
+.btn-header:hover {
+  background: #dcdcdc;
+}
+
+.burger {
+  display: none;
+  background: #121212;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: #ffffff;
+  font-size: 18px;
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  z-index: 1001;
+}
+
+/* ================= 4. ГЛАВНЫЙ ЭКРАН (HERO) ================= */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 22px 0;
+  margin-bottom: 32px;
+  max-width: 780px;
+}
+
+.stat-item {
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 0 18px;
+}
+
+.stat-item:first-child {
+  padding-left: 0;
+}
+
+.stat-item:last-child {
+  border-right: none;
+  padding-right: 0;
+}
+
+.stat-value {
+  font-size: clamp(20px, 2.5vw, 24px);
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.stat-desc {
+  font-size: 11px;
+  color: #777777;
+  margin-top: 4px;
+  line-height: 1.35;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: clamp(36px, 5vw, 52px);
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff;
+  color: #000000;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 15px 24px;
+  min-height: 46px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  text-align: center;
+  transition: opacity 0.2s, transform 0.1s;
+}
+
+.btn-primary:hover {
+  opacity: 0.9;
+}
+
+.btn-primary:active {
+  transform: scale(0.99);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.03);
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 15px 22px;
+  min-height: 46px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  text-align: center;
+  transition: background 0.2s;
+}
+
+.btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.full-width {
+  width: 100%;
+}
+
+/* Рамка внутри Hero */
+.hero-box {
+  background: #0b0b0b;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: clamp(18px, 3vw, 28px);
+}
+
+.hero-box-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding-bottom: 18px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.box-title {
+  font-size: clamp(16px, 2vw, 18px);
+  font-weight: 700;
+}
+
+.badge-outline {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  padding: 6px 12px;
+  border-radius: 6px;
+  background: #ffffff;
+  color: #000000;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* ================= 5. СЕТКА КАРТОЧЕК (3 КОЛОНКИ -> 2 -> 1) ================= */
+.cards-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.card {
+  background: #0c0c0c;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: clamp(18px, 2.5vw, 24px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: border-color 0.2s;
+}
+
+.card:hover {
+  border-color: rgba(255, 255, 255, 0.28);
+}
+
+.card-top {
+  display: flex;
+  justify-content: space-between;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: #777;
+  margin-bottom: 18px;
+}
+
+.card-title, .card-heading {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  line-height: 1.35;
+}
+
+.card-text {
+  font-size: 12.5px;
+  color: #999999;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.card-footer {
+  padding-top: 12px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: #bbbbbb;
+}
+
+/* ================= 6. КАЛЬКУЛЯТОР СТОИМОСТИ ================= */
+.calc-layout {
+  display: grid;
+  grid-template-columns: 7fr 5fr;
+  gap: 24px;
+  align-items: start;
+}
+
+.calc-left, .calc-summary {
+  background: #0b0b0b;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: clamp(18px, 3vw, 26px);
+}
+
+.calc-summary {
+  position: sticky;
+  top: 84px;
+}
+
+.calc-group {
+  margin-bottom: 24px;
+}
+
+.calc-group:last-child {
+  margin-bottom: 0;
+}
+
+.type-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.type-btn {
+  background: #111111;
+  color: #aaaaaa;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 13px 14px;
+  border-radius: 8px;
+  font-size: 12px;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.2s;
+  line-height: 1.35;
+}
+
+.type-btn.active {
+  border-color: #ffffff;
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.06);
+  font-weight: 600;
+}
+
+.speed-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+.speed-btn {
+  background: #111111;
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  padding: 14px 12px;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.speed-btn.active {
+  background: #ffffff;
+  color: #000000;
+  border-color: #ffffff;
+}
+
+.speed-badge {
+  display: inline-block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  padding: 3px 6px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.1);
+  margin-bottom: 10px;
+  width: fit-content;
+}
+
+.speed-btn.active .speed-badge {
+  background: #000000;
+  color: #ffffff;
+}
+
+.speed-days {
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.speed-price {
+  font-size: 12px;
+  font-weight: 600;
+  margin-top: 2px;
+}
+
+.speed-sub {
+  font-size: 10px;
+  opacity: 0.65;
+  margin-top: 4px;
+}
+
+.options-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.option-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  background: #111111;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 14px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.option-left {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.option-left input {
+  width: 18px;
+  height: 18px;
+  margin-top: 2px;
+  accent-color: #ffffff;
+  flex-shrink: 0;
+}
+
+.option-title {
+  font-size: 12.5px;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.option-desc {
+  font-size: 11px;
+  color: #777777;
+  margin-top: 2px;
+  line-height: 1.4;
+}
+
+.option-price {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: #cccccc;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.summary-heading {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 18px;
+}
+
+.summary-lines {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 16px;
+  margin-bottom: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: 12px;
+  color: #aaaaaa;
+}
+
+.summary-line {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.summary-line b {
+  color: #ffffff;
+  font-family: 'JetBrains Mono', monospace;
+  text-align: right;
+}
+
+.summary-total-row {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.total-big {
+  font-size: clamp(28px, 4vw, 36px);
+  font-weight: 800;
+  line-height: 1;
+  margin-top: 4px;
+}
+
+.total-big small {
+  font-size: 14px;
+  color: #888;
+}
+
+.summary-note {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: #666;
+  text-align: right;
+}
+
+/* ================= 7. ТАБЛИЦА СРАВНЕНИЯ ================= */
+.table-wrap {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 14px;
+  background: #0b0b0b;
+  overflow: hidden;
+}
+
+.compare-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12.5px;
+}
+
+.compare-table th, .compare-table td {
+  padding: 16px 20px;
+  text-align: left;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.compare-table tr:last-child td {
+  border-bottom: none;
+}
+
+.compare-table th {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: #888;
+  background: #101010;
+  letter-spacing: 0.08em;
+}
+
+.highlight-col {
+  border-left: 1px solid rgba(255, 255, 255, 0.1);
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  font-weight: 600;
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.015);
+}
+
+.dim-col {
+  color: #777777;
+}
+
+/* ================= 8. ВОПРОСЫ И ОТВЕТЫ (FAQ) ================= */
+.faq-container {
+  max-width: 780px;
+}
+
+.faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.faq-item {
+  background: #0b0b0b;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 16px 20px;
+}
+
+.faq-item summary {
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 14px;
+  line-height: 1.4;
+}
+
+.faq-item summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq-item summary::after {
+  content: '+';
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 16px;
+  color: #888;
+  width: 26px;
+  height: 26px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 6px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.faq-item[open] summary::after {
+  content: '−';
+  color: #fff;
+}
+
+.faq-item p {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  font-size: 12.5px;
+  color: #a0a0a0;
+  line-height: 1.6;
+}
+
+/* ================= 9. ФОРМА ЗАКАЗА ================= */
+.order-layout {
+  display: grid;
+  grid-template-columns: 5fr 7fr;
+  gap: 32px;
+  align-items: start;
+}
+
+.white-link {
+  color: #fff;
+  text-decoration: underline;
+  font-weight: 600;
+}
+
+.contact-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.contact-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  background: #0b0b0b;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 16px;
+  border-radius: 12px;
+  transition: border-color 0.2s;
+}
+
+.contact-card:hover {
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.contact-val {
+  font-size: 13px;
+  font-weight: 700;
+  margin-top: 2px;
+  word-break: break-word;
+}
+
+.order-form-box {
+  background: #0b0b0b;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: clamp(20px, 3.5vw, 32px);
+}
+
+.form-group {
+  margin-bottom: 16px;
+}
+
+.form-group input, .form-group textarea {
+  width: 100%;
+  background: #121212;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  padding: 13px 14px;
+  color: #ffffff;
+  font-size: 14px;
+  transition: border-color 0.2s;
+}
+
+.form-group input:focus, .form-group textarea:focus {
+  outline: none;
+  border-color: rgba(255, 255, 255, 0.45);
+}
+
+.form-status {
+  margin-top: 12px;
+  font-size: 12px;
+  text-align: center;
+}
+
+.form-status.success {
+  color: #4ade80;
+}
+
+.form-status.error {
+  color: #f87171;
+}
+
+/* ================= 10. ПОДВАЛ (FOOTER) ================= */
+.footer {
+  padding: 36px 0;
+  background: #040404;
+}
+
+.footer-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  font-size: 12px;
+  color: #888;
+}
+
+.footer-links a:hover {
+  color: #fff;
+}
+
+/* =====================================================================
+   АДАПТИВ ПОД ВСЕ УСТРОЙСТВА (MEDIA QUERIES)
+===================================================================== */
+
+/* 1. Планшеты и небольшие ноутбуки (до 992px) */
+@media (max-width: 992px) {
+  .cards-3 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* В блоке Hero 3-я карточка встает на всю ширину внизу */
+  .hero-box .cards-3 .card:last-child {
+    grid-column: span 2;
+  }
+
+  .calc-layout,
+  .order-layout {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .calc-summary {
+    position: static;
+  }
+}
+
+/* 2. Планшеты вертикально и крупные телефоны (до 768px) */
+/* Ссылка-кнопка внутри мобильного меню скрыта на ПК */
+.nav-mobile-cta {
+  display: none;
+}
+
+/* Кнопка бургер скрыта на ПК */
+.burger {
+  display: none;
+  background: #121212;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: #ffffff;
+  font-size: 18px;
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  z-index: 1001;
+}
+
+/* ================= АДАПТИВ ДЛЯ ТЕЛЕФОНОВ И ПЛАНШЕТОВ ================= */
+@media (max-width: 768px) {
+  /* На ПК-шную кнопку в шапке больше не смотрим */
+  .header .btn-header {
+    display: none;
+  }
+
+  /* Показываем кнопку бургер */
+  .burger {
+    display: inline-flex;
+  }
+
+  /* Само мобильное меню по умолчанию скрыто */
+  .nav {
+    display: none;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    position: fixed;
+    top: 64px;
+    left: 0;
+    right: 0;
+    background: rgba(10, 10, 10, 0.98);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    padding: 16px 20px 24px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8);
+    z-index: 1000;
+  }
+
+  /* Когда JS добавляет класс open — меню становится видимым и список ссылок выстраивается */
+  .nav.open {
+    display: flex !important;
+  }
+
+  .nav-link {
+    font-size: 15px;
+    color: #e5e5e5;
+    padding: 14px 4px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  /* Кнопка заказа внутри открытого меню */
+  .nav-mobile-cta {
+    display: flex;
+    margin-top: 18px;
+    justify-content: center;
+    background: #ffffff;
+    color: #000000;
+    font-weight: 700;
+  }
+}
+
+/* 3. Смартфоны (iPhone / Android — до 560px) */
+@media (max-width: 560px) {
+  .cards-3 {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-box .cards-3 .card:last-child {
+    grid-column: span 1;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+  }
+
+  .hero-actions .btn-primary,
+  .hero-actions .btn-secondary {
+    width: 100%;
+  }
+
+  .type-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .option-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .option-price {
+    padding-left: 30px;
+    color: #ffffff;
+    font-weight: 600;
+  }
+
+  .summary-total-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .summary-note {
+    text-align: left;
+  }
+
+  /* 16px предотвращает авто-зум экрана в iOS Safari при нажатии на input */
+  .form-group input,
+  .form-group textarea {
+    font-size: 16px;
+  }
+
+  .footer-inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+/* 4. Узкие экраны (iPhone SE / старые модели — до 370px) */
+@media (max-width: 370px) {
+  .container {
+    padding: 0 14px;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .stat-item:nth-child(odd) {
+    border-right: none;
+    padding-right: 0;
+  }
+
+  .speed-grid {
+    grid-template-columns: 1fr;
+  }
+}
