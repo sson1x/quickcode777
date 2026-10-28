@@ -801,12 +801,18 @@ button, input, textarea {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  /* Растягиваем 3-ю карточку в первом блоке на всю ширину */
+  .hero-box .cards-3 .card:last-child {
+    grid-column: span 2;
+  }
+
   .calc-layout,
   .order-layout {
     grid-template-columns: minmax(0, 1fr);
     gap: 20px;
   }
 }
+
 
 @media (max-width: 768px) {
   .section {
