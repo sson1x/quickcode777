@@ -155,7 +155,7 @@ button, input, textarea {
 }
 
 .nav-mobile-cta {
-  display: none;
+  display: none !important;
 }
 
 .btn-header {
