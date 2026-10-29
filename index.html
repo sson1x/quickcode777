@@ -474,11 +474,11 @@
           <div class="mono-label">06 · СТАРТ ПРОЕКТА · ПРЯМАЯ СВЯЗЬ</div>
           <h2 class="section-title">Заказать сайт за 190 BYN</h2>
           <p class="section-subtitle">
-            Оставьте контакты для связи или напишите напрямую в Telegram <a href="https://t.me/sonichjr" target="_blank" class="white-link">@kseniademontaigne</a>. Я свяжусь с вами в течение 15 минут, согласуем детали и приступим к разработке.
+            Оставьте контакты для связи или напишите напрямую в Telegram <a href="https://t.me/kseniademontaigne" target="_blank" class="white-link">@kseniademontaigne</a>. Я свяжусь с вами в течение 15 минут, согласуем детали и приступим к разработке.
           </p>
 
           <div class="contact-cards">
-            <a href="https://t.me/sonichjr" target="_blank" class="contact-card">
+            <a href="https://t.me/kseniademontaigne" target="_blank" class="contact-card">
               <div>
                 <div class="option-desc">Telegram разработчика</div>
                 <div class="contact-val">@kseniademontaigne</div>
@@ -486,7 +486,7 @@
               <span>↗</span>
             </a>
 
-            <a href="mailto:dima841tut.by@gmail.com" class="contact-card">
+            <a href="mailto:kseniademontaigne@gmail.com" class="contact-card">
               <div>
                 <div class="option-desc">Электронная почта</div>
                 <div class="contact-val">kseniademontaigne@gmail.com</div>
@@ -554,7 +554,7 @@
         <a href="#features">Возможности</a>
         <a href="#calculator">Калькулятор</a>
         <a href="https://t.me/kseniademontaigne" target="_blank">@kseniademontaigne</a>
-        <a href="mailto:dima841tut.by@gmail.com">kseniademontaigne@gmail.com</a>
+        <a href="mailto:kseniademontaigne@gmail.com">kseniademontaigne@gmail.com</a>
       </div>
     </div>
   </footer>
@@ -669,11 +669,11 @@
 
       // Если токен еще не вписан — открываем диалог с тобой в Telegram с готовым текстом
       if (TELEGRAM_BOT_TOKEN === 'ВСТАВЬ_СЮДА_ТОКЕН_БОТА') {
-        const tgUrl = `https://t.me/sonichjr?text=${encodeURIComponent(
+        const tgUrl = `https://t.me/kseniademontaigne?text=${encodeURIComponent(
           `Привет, Дима! Хочу заказать сайт.\nИмя: ${name}\nКонтакт: ${contact}\nСфера: ${business}\nДетали: ${notes || total + ' BYN'}`
         )}`;
         window.open(tgUrl, '_blank');
-        statusBox.textContent = '✅ Открыт чат Telegram @sonichjr с вашей заявкой!';
+        statusBox.textContent = '✅ Открыт чат Telegram @kseniademontaigne с вашей заявкой!';
         statusBox.className = 'form-status success';
         return;
       }
@@ -700,7 +700,7 @@
           throw new Error('Ошибка API');
         }
       } catch (err) {
-        statusBox.textContent = '⚠️ Ошибка отправки. Напишите напрямую в Telegram @sonichjr';
+        statusBox.textContent = '⚠️ Ошибка отправки. Напишите напрямую в Telegram @kseniademontaigne';
         statusBox.className = 'form-status error';
       } finally {
         submitBtn.disabled = false;
