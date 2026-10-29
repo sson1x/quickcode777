@@ -324,8 +324,18 @@ button, input, textarea {
   padding: 22px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start; /* Заголовок и текст всегда рядом */
 }
+
+.card-footer {
+  margin-top: auto; /* Прижимает только нижнюю строчку к низу карточки */
+  padding-top: 12px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: #bbbbbb;
+}
+
 
 .card-top {
   display: flex;
@@ -796,12 +806,15 @@ button, input, textarea {
    АДАПТИВ ПОД ПЛАНШЕТЫ И СМАРТФОНЫ (ВСЕ ИСПРАВЛЕНИЯ СО СКРИНШОТОВ)
 ===================================================================== */
 
+/* =====================================================================
+   АДАПТИВ ПОД ПЛАНШЕТЫ И СМАРТФОНЫ
+===================================================================== */
+
 @media (max-width: 960px) {
   .cards-3 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  /* Растягиваем 3-ю карточку в первом блоке на всю ширину */
   .hero-box .cards-3 .card:last-child {
     grid-column: span 2;
   }
@@ -812,7 +825,6 @@ button, input, textarea {
     gap: 20px;
   }
 }
-
 
 @media (max-width: 768px) {
   .section {
@@ -825,7 +837,7 @@ button, input, textarea {
 
   /* 1. Мобильное меню и шапка */
   .header .btn-header {
-    display: none;
+    display: none !important;
   }
 
   .burger {
@@ -862,12 +874,12 @@ button, input, textarea {
   }
 
   .nav-mobile-cta {
-    display: flex;
+    display: flex !important;
     margin-top: 16px;
     justify-content: center;
   }
 
-  /* 2. Исправление 4 цифр в Hero (встают 2х2, ничего не режется справа) */
+  /* 2. 4 цифры в Hero (сетка 2х2) */
   .stats-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 18px 14px;
@@ -884,13 +896,21 @@ button, input, textarea {
     padding-right: 12px;
   }
 
-  /* 3. Карточки в 1 колонку на телефоне */
+  /* 3. Строго 1 колонка для всех карточек на телефоне + сброс span 2 */
   .cards-3,
+  .hero-box .cards-3,
   .type-grid {
-    grid-template-columns: minmax(0, 1fr);
+    grid-template-columns: minmax(0, 1fr) !important;
   }
 
-  /* 4. Исправление 4 кнопок скорости в калькуляторе (сетка 2х2) */
+  .cards-3 .card,
+  .hero-box .cards-3 .card,
+  .hero-box .cards-3 .card:last-child {
+    grid-column: auto !important;
+    width: 100%;
+  }
+
+  /* 4. Кнопки скорости в калькуляторе (2х2) */
   .speed-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 10px;
@@ -903,7 +923,7 @@ button, input, textarea {
     padding: 18px 16px;
   }
 
-  /* 5. Исправление итоговой сметы, чтобы правый край не уезжал */
+  /* 5. Итоговая смета */
   .summary-line {
     flex-direction: column;
     align-items: flex-start;
@@ -931,7 +951,7 @@ button, input, textarea {
     text-align: left;
   }
 
-  /* 6. Исправление таблицы сравнения (превращается в мобильные карточки) */
+  /* 6. Таблица сравнения (мобильные карточки) */
   .compare-table thead {
     display: none;
   }
@@ -982,7 +1002,7 @@ button, input, textarea {
     padding-left: 2px;
   }
 
-  /* 7. Кнопки и опции на телефонах */
+  /* 7. Кнопки и опции */
   .hero-actions {
     flex-direction: column;
   }
